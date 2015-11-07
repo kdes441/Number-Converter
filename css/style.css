@@ -1,10 +1,23 @@
 body{
-	background-color:#5D5D5D;
-	color:#00BB00;
-	text-shadow: 1px 1px black;
+	background-color:	#D6DAC3;
+	color:#663333;
 	font-family: "Times New Roman", Georgia, Serif;
 	font-weight:bold;
 }
 
+.header{
+	font-size:24px;
+}
 
-
+.box{
+	-moz-border-radius: 2px;
+-webkit-border-radius: 2px;
+border-radius: 2px;
+/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
+-moz-box-shadow: 0px 0px 20px #000000;
+-webkit-box-shadow: 0px 0px 20px #000000;
+box-shadow: 0px 0px 20px #000000;
+/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
+background-color: #C3C9A7;
+padding: 25px;
+}

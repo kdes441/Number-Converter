@@ -5,114 +5,82 @@
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    	<title id="demo">Number Converter</title>
+    	<title id="demo">Conversion</title>
 
-    	<link href="css/bootstrap.min.css" rel="stylesheet">
+    	<link href="css/bootstrap.css" rel="stylesheet">
     	<link href="css/style.css" rel="stylesheet">
-
+      <script src="js/conversion.js"></script>
   </head>
-  
+
   <body>
-    
-    <script>
 
-    	function calculate(){
-    	
-    		var value1=document.getElementById("convert_from").value;
-    		var value2=document.getElementById("convert_to").value;
-    		var number_to_convert=document.getElementById("input_value").value;
-    	
+     <nav class="navbar navbar-inverse container-fluid">
+       <div class="container-fluid">
+         <div class="navbar-header">
+           <div class="text-center header" >Binary, Hexadecimal &amp; Decimal Converter</div>
+         </div>
+         <div>
+           <ul class="nav nav-pills" role="tablist">
+             <li role="presentation" class="active"><a href="#">Conversion</a></li>
+             <li role="presentation"><a href="calculation.html">Addition/Subtraction</a></li>
+           </ul>
+         </div>
+       </div>
+    </nav>
 
-    		if(value1==value2){
-    			alert("Invaild Conversion");
-			}
-    		else if(value1=="Decimal" && value2=="Binary"){
-    			decimalBin(number_to_convert);
-			}
-			else if(value1=="Decimal" && value2=="Hex"){
-    			decimalHex(number_to_convert);
-			}
-			else if(value1=="Hex" && value2=="Binary"){
-    			hexBin(number_to_convert);
-			}
-			else if(value1=="Hex" && value2=="Decimal"){
-    			hexDecimal(number_to_convert);
-			}
-			else if(value1=="Binary" && value2=="Decimal"){
-    			binDecimal(number_to_convert);
-			}
-			else if(value1=="Binary" && value2=="Hex"){
-    			binHex(number_to_convert);
-			}
-    	}
-	
-		function decimalBin(a){
-			document.getElementById("conversion").value=parseInt(a, 10).toString(2);
-		}
-		function decimalHex(a){
-			document.getElementById("conversion").value=parseInt(a, 10).toString(16);
-		}
-		function hexBin(a){
-			document.getElementById("conversion").value=parseInt(a, 16).toString(2);
-		}
-		function hexDecimal(a){
-			document.getElementById("conversion").value=parseInt(a, 16).toString(10);
-		}
-		function binDecimal(a){
-			document.getElementById("conversion").value=parseInt(a, 2).toString(10);
-		}
-		function binHex(a){
-			document.getElementById("conversion").value=parseInt(a, 2).toString(16);
-		}
-	
-	</script>
+    <br>
+    <br>
+    <div class="alert alert-danger" id="alert" hidden=""><strong>Invalid selection</strong></div>
+    <br>
+    <br>
+    <br>
+    <br>
 
     <div class="container">
-
-    	<br>
-    	<h1 class="text-center">Number Converter</h1>
-    	<br>
-    	<br>
-    	
-    	<div class="row"> 
-    		<div class="col-xs-4">
-      			<label>Number 1:</label>
+      <div class="box">
+      <div class="row">
+    		<div class="col-xs-6">
       			<input type="text" class="form-control" id="input_value" placeholder="Enter value">
     		</div>
-    		<div class="col-xs-4"></div>
-    		<div class="col-xs-4">
-      			<label>Number 2:</label>
-      			<input type="text" class="form-control" id="conversion" placeholder="Result">
+
+    		<div class="col-xs-6">
+      			<input type="text" class="form-control" id="conversion" placeholder="Result" disabled>
     		</div>
     	</div>
+
+      <br>
+
     	<div class="row">
     		<div class="col-xs-4">
-    			<select id="convert_from">
+          <label>From:</table>
+    			<select class="form-control" id="convert_from" onchange="error()">
   					<option id="Decimal">Decimal</option>
- 					<option id="Hex">Hex</option>
- 					<option id="Binary">Binary</option>
- 				</select>
-    		</div>
-    		<div class="col-xs-4"></div>
-    		<div class="col-xs-4">
-    			<select id="convert_to">
-  					<option value="Decimal">Decimal</option>
- 					<option value="Hex">Hex</option>
- 					<option value="Binary">Binary</option>
- 				</select>
+ 					  <option id="Hex">Hex</option>
+ 					  <option id="Binary">Binary</option>
+ 			    </select>
+          <br>
+
+          <label>To:</table>
+    			<select class="form-control" id="convert_to" onchange="error()">
+            <option value="Hex">Hex</option>
+            <option value="Decimal">Decimal</option>
+ 					  <option value="Binary">Binary</option>
+ 				  </select>
     		</div>
     	</div>
 
     	<br>
+
     	<div class="text-center">
     		<button type="button" class="btn btn-default" id="calculate" onclick="calculate()">Calculate</button>
     	</div>
+    </div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    
+
   </body>
 </html>
