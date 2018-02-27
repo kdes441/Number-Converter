@@ -1,94 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    	<meta charset="utf-8">
-    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    	<title id="demo">Conversion</title>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Number Converter/Calculator</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="style.css" rel="stylesheet">
+</head>
 
-    	<link href="css/bootstrap.css" rel="stylesheet">
-    	<link href="css/style.css" rel="stylesheet">
-      <script src="js/conversion.js"></script>
-      <script type='application/javascript' src="/js/fastclick.js"></script>
-      <script>
-      if ('addEventListener' in document) {
-      document.addEventListener('DOMContentLoaded', function() {
-          FastClick.attach(document.body);
-      }, false);
-  }
-      </script>
-  </head>
+<body>
 
-  <body>
+  <div class="jumbotron jumbotron-fluid">
+    <h1 class="text-center">Number Converter/Calculator</h1>
+  </div>
 
-     <nav class="navbar navbar-inverse container-fluid">
-       <div class="container-fluid">
-         <div class="navbar-header">
-           <div class="text-center header" >Binary, Hexadecimal &amp; Decimal Converter</div>
-         </div>
-         <div>
-           <ul class="nav nav-pills" role="tablist">
-             <li role="presentation" class="active"><a href="#">Conversion</a></li>
-             <li role="presentation"><a href="calculation.html">Addition/Subtraction</a></li>
-           </ul>
-         </div>
-       </div>
-    </nav>
+  <div class="alert alert-danger custom-alert invisibile" id="alert"><strong>Cannot convert to the same type</strong></div>
 
-    <br>
-    <br>
-    <div class="alert alert-danger" id="alert" hidden=""><strong>Invalid selection</strong></div>
-    <br>
-    <br>
-    <br>
-    <br>
+  <div class="text-center">
+    <h6 id="slider-text">Converter</h6>
+    <label class="switch">
+        <input type="checkbox" id="slider">
+        <span class="slider round"></span>
+      </label>
+  </div>
 
-    <div class="container">
-      <div class="box">
+  <div class="container-fluid">
+
+
+    <div class="box" id="conversion-box">
       <div class="row">
-    		<div class="col-xs-6">
-      			<input type="text" class="form-control" id="input_value" placeholder="Enter value">
-    		</div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <input type="text" class="form-control" id="input_value" placeholder="Value">
+        </div>
+        <br />
+        <br/>
 
-    		<div class="col-xs-6">
-      			<input type="text" class="form-control" id="conversion" placeholder="Result" disabled>
-    		</div>
-    	</div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <input type="text" class="form-control" id="conversion" placeholder="Result" disabled>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <small>From:</small>
+          <select class="form-control" id="convert_from">
+            <option value="Binary">Binary</option>
+  					<option value="Decimal">Decimal</option>
+ 					  <option value="Hex">Hex</option>
+            <option value="Octal">Octal</option>
+ 			    </select>
+        </div>
+
+        <div class="col-6">
+          <small>To:</small>
+          <select class="form-control" id="convert_to">
+            <option value="Binary">Binary</option>
+  					<option value="Decimal">Decimal</option>
+ 					  <option value="Hex">Hex</option>
+            <option value="Octal">Octal</option>
+ 				  </select>
+        </div>
+      </div>
 
       <br>
 
-    	<div class="row">
-    		<div class="col-xs-4">
-          <label>From:</table>
-    			<select class="form-control" id="convert_from" onchange="error()">
-  					<option id="Decimal">Decimal</option>
- 					  <option id="Hex">Hex</option>
- 					  <option id="Binary">Binary</option>
- 			    </select>
-          <br>
-
-          <label>To:</table>
-    			<select class="form-control" id="convert_to" onchange="error()">
-            <option value="Hex">Hex</option>
-            <option value="Decimal">Decimal</option>
- 					  <option value="Binary">Binary</option>
- 				  </select>
-    		</div>
-    	</div>
-
-    	<br>
-
-    	<div class="text-center">
-    		<button type="button" class="btn btn-default" id="calculate" onclick="calculate()">Calculate</button>
-    	</div>
-    </div>
+      <div class="text-center">
+        <button type="button" class="btn custom-button" id="convert-btn">Convert</button>
+      </div>
     </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
 
-  </body>
+    <div class="box hidden" id="calculation-box">
+      <div class="row">
+        <div class="col-12">
+          <label>Number Type?</label>
+          <select class="form-control" id="number_type">
+              <option value="Binary">Binary</option>
+    					<option value="Decimal">Decimal</option>
+   					  <option value="Hex">Hex</option>
+   					  <option value="Octal">Octal</option>
+   				</select>
+        </div>
+      </div>
+      <br />
+
+      <div class="row">
+        <div class="col-lg-5 col-md-4 col-sm-12">
+          <input type="text" class="form-control" id="input_value1" placeholder="Value 1">
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-12">
+          <select class="form-control" id="calculation">
+              <option value="addition">+</option>
+              <option value="subtract">-</option>
+              <option value="multiply">×</option>
+              <option value="divide">÷</option>
+           </select>
+        </div>
+        <div class="col-lg-5 col-md-4 col-sm-12">
+          <input type="text" class="form-control" id="input_value2" placeholder="Value 2">
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <div class="col-12">
+          <input type="text" class="form-control" id="calculation_answer" placeholder="Result" disabled>
+        </div>
+      </div>
+      <br>
+      <div class="text-center">
+        <button type="button" class="btn custom-button" id="calculate-btn">Calculate</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="app.js"></script>
+</body>
+
 </html>
